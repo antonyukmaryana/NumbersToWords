@@ -5,23 +5,7 @@ namespace NumbersToWords.Models
 {
     public class Numbers
     {
-        public static bool CheckZero(int number)
-        {
-            if (number == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static string output = "";
-
-        public static string Convert(int number)
-        {
-            Dictionary<int, string> singleDigits = new Dictionary<int, string>() { 
+        public static Dictionary<int, string> singleDigits = new Dictionary<int, string>() { 
                 {1, "one"}, 
                 {2, "two"}, 
                 {3, "three"}, 
@@ -33,7 +17,7 @@ namespace NumbersToWords.Models
                 {9, "nine"} 
             };
 
-            Dictionary<int, string> teens = new Dictionary<int, string>() {
+        public static Dictionary<int, string> teens = new Dictionary<int, string>() {
                 {11, "eleven"},
                 {12, "twelve"}, 
                 {13, "thirteen"},
@@ -45,7 +29,7 @@ namespace NumbersToWords.Models
                 {19, "nineteen"} 
             };
 
-            Dictionary<int, string> tens = new Dictionary<int, string>() {
+        public static Dictionary<int, string> tens = new Dictionary<int, string>() {
                 {1, "ten"},
                 {2, "twenty"},
                 {3, "thirty"}, 
@@ -57,6 +41,51 @@ namespace NumbersToWords.Models
                 {9, "ninty"}
             };
 
+        public static bool CheckZero(int number)
+        {
+            if (number == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        public static int input;
+
+        public static string output = "";
+
+        public static void Convert100AndUp(int inputNum, int num, string numWord)
+        {
+            int dividend = inputNum / num;  // dividend = 20000 / 1000 = 20
+            int remainder = inputNum % num; // remainder = 0
+            if (dividend > 9)
+            {
+                Convert(dividend); // "twenty"
+                Console.WriteLine("initial output: " + output);
+                Console.WriteLine("dividend: " + dividend);
+                Console.WriteLine("first output: " + output);
+                Convert(input - inputNum); 
+            }
+            else
+            {
+                if (remainder == 0)
+                {
+                    output += singleDigits[dividend]  + " " + numWord;
+                }
+                else  
+                {
+                    output += singleDigits[dividend] + " " + numWord + " ";
+                    Convert(remainder);
+                }
+            }
+            
+        }
+
+        public static string Convert(int number)
+        {
             if (number < 10)
             {
                 output += singleDigits[number];
@@ -80,21 +109,19 @@ namespace NumbersToWords.Models
             }
             else if  (number > 99 && number <1000)
             {
-                int dividend = number / 100; //dividend = 3
-                int remainder = number % 100; // remainder = 45
-                if (remainder == 0)
-                {
-                    output += singleDigits[dividend]  + " hundred";
-                }
-                else  
-                {
-                    output += singleDigits[dividend] + " hundred ";
-                    Convert(remainder);
-                }
+                Convert100AndUp(number, 100, "hundred");
+            }
+            else if (number > 999 && number <1000000)
+            {
+                Convert100AndUp(number, 1000, "thousand");
+            }
+            else if (number > 999999 && number <1000000000)
+            {
+                Convert100AndUp(number, 1000000, "million");
             }
 
+            
             return output;
-
         }
     }
 }

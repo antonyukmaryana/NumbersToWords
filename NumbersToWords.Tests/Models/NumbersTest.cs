@@ -15,41 +15,88 @@ namespace NumbersToWords.Tests
         [TestMethod]
         public void CheckZero_ZeroToWord_Zero() 
         {
-            Assert.AreEqual(true, Numbers.CheckZero(0));
+            Numbers.input = 0;
+            Assert.AreEqual(true, Numbers.CheckZero(Numbers.input));
         }
 
         [TestMethod]
         public void Convert_SingleDigitNumberToWord_WordForNumber()
         {
-            Assert.AreEqual("three", Numbers.Convert(3));
+            Numbers.input = 3;
+            Assert.AreEqual("three", Numbers.Convert(Numbers.input));
         }
 
         [TestMethod]
         public void Convert_Teens_WordForNumber()
         {
-            Assert.AreEqual("twelve", Numbers.Convert(12));
+            Numbers.input = 12;
+            Assert.AreEqual("twelve", Numbers.Convert(Numbers.input));
         }
 
         [TestMethod]
         public void Convert_MultiplesOfTen_WordForNumber()
         {
-            Assert.AreEqual("thirty", Numbers.Convert(30));
+            Numbers.input = 30;
+            Assert.AreEqual("thirty", Numbers.Convert(Numbers.input));
         }
 
         [TestMethod]
         public void Convert_LessThan100_WordForNumber()
         {
-            Assert.AreEqual("thirty three", Numbers.Convert(33));
+            Numbers.input = 33;
+            Assert.AreEqual("thirty three", Numbers.Convert(Numbers.input));
         }
         [TestMethod]
         public void Convert_Multiples100_WordForNumber()
         {
-            Assert.AreEqual("three hundred", Numbers.Convert(300));
+            Numbers.input = 300;
+            Assert.AreEqual("three hundred", Numbers.Convert(Numbers.input));
         }
         [TestMethod]
         public void Convert_LessThan1000_WordForNumber()
         {
-            Assert.AreEqual("three hundred forty five", Numbers.Convert(345));
+            Numbers.input = 345;
+            Assert.AreEqual("three hundred forty five", Numbers.Convert(Numbers.input));
         }
+        [TestMethod]
+        public void Convert_MultiplesOf1000_WordForNumber()
+        {
+            Numbers.input = 3000;
+            Assert.AreEqual("three thousand", Numbers.Convert(Numbers.input));
+        }
+        [TestMethod]
+        public void Convert_LessThan10000_WordForNumber()
+        {
+            Numbers.input = 3050;
+            Assert.AreEqual("three thousand fifty", Numbers.Convert(Numbers.input));
+
+        }
+        [TestMethod]
+        public void Convert_MultiplesOf10000_WordForNumber()
+        {
+            Numbers.input = 20000;
+            Assert.AreEqual("twenty thousand", Numbers.Convert (Numbers.input));
+
+        }
+
+        // [TestMethod]
+        // public void Convert_MultiplesOfMillion_WordForNumber()
+        // {
+        //     Assert.AreEqual("one million", Numbers.Convert(1000000));
+        // }
+
+        // [TestMethod]
+        // public void Convert_LessThanMillion_WordForNumber()
+        // {
+        //     Assert.AreEqual("two hundred thousand", Numbers.Convert(200000));
+        // }
+
+        // // [TestMethod]
+        // // public void Convert_LessThanMillion_WordForNumber()
+        // {
+        //     Assert.AreEqual("two hundred forty five thousand six hundred seventy eight", Numbers.Convert(245678));
+        // }
+
+
     }
 }
