@@ -1,6 +1,6 @@
 using System;
 
-namespace ProjectName.Models
+namespace NumbersToWords.Models
 {
     public class ClassName
     {

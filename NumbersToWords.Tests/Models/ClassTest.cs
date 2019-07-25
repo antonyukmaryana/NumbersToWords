@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProjectName.Models;
+using NumbersToWords.Models;
 
-namespace ProjectName.Tests
+namespace NumbersToWords.Tests
 {
     [TestClass]
     public class ClassNameTest

@@ -1,5 +1,5 @@
 using System;
-using NAMESPACE;
+using NumbersToWords.Models;
 
 class Program
 {
